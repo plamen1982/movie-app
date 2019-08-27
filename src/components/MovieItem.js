@@ -2,16 +2,12 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { deleteMovie } from '../actions/movie-actions';
 import { connect } from 'react-redux';
+import { Button, Jumbotron, Container, Row, Col, Image, Card } from 'react-bootstrap';
 
 function MovieItem({ movie, deleteMovie }) {
-    const border = {
-        border: '1px solid black',
-        padding: '1px',
-        margin: '3px',
-        backgroundColor: 'white',
-        cursor: 'pointer',
-        fontSize: '15px',
-        textDecoration: 'none'
+    const customStyles = {
+        color: 'white',
+        margin: '7px'
       }
     const movieId = movie._id;
 
@@ -20,17 +16,22 @@ function MovieItem({ movie, deleteMovie }) {
     }
 
     return(
-        <>
-            <div key={movie._id} style={border}></div>
-            <div>Name: {movie.name}</div>
-            <div>Released On: {movie.released_on}</div>
-            <div>Number of Disks: {movie.disk}</div>
-            <div>Is Movie Watched: {movie.isWatched ? 'Yes' : 'No'}</div>
-            <Link to={`/movie/${movie._id}`} style={border}>Details</Link>
-            <Link to={`/create`} style={border}>Create Movie</Link>
-            <Link to={`/update/${movie._id}`} style={border}>Update</Link>
-            <button onClick={handleDelete} style={border}>Delete Movie</button>
-        </>
+        <Card style={{ width: '40rem' }}>
+            <Card.Header>Movie Name: {movie.name}</Card.Header>
+            <Card.Body>
+            <Card.Title> Released On: {movie.released_on}</Card.Title>
+            <Card.Text>
+                Number of Disks: {movie.disk}
+            </Card.Text>
+            <Card.Text>
+                Is Movie Watched: {movie.isWatched ? 'Yes' : 'No'}
+            </Card.Text>
+                <Button variant="primary" style={customStyles}><Link to={`/movie/${movie._id}`} style={customStyles}>Details</Link></Button>
+                <Button variant="success" style={customStyles}><Link to={`/create`} style={customStyles}>Create Movie</Link></Button>
+                <Button variant="warning" style={customStyles}><Link to={`/update/${movie._id}`} style={customStyles}>Update</Link></Button>
+                <Button variant="danger" onClick={handleDelete} style={customStyles}>Delete Movie</Button>
+            </Card.Body>
+        </Card>
     )
 }
 
