@@ -1,4 +1,4 @@
-import { getAllMovies, createNewMovie } from '../services/movie-service';
+import { getAllMovies, createNewMovie, updateExistMovie } from '../services/movie-service';
 
 export const UPDATE_MOVIE = 'movie:updateMovie';
 export const GET_ALL_MOVIES = 'movies:getAllMovies';
@@ -23,12 +23,12 @@ export function getAllMoviesAction() {
 
 export function createMovie(newMovie) {
     const action = {
-        type: GET_ALL_MOVIES,
+        type: CREATE_MOVIE,
         payload: {
             movies: []
         }
     }
-    
+
     return dispatch => {
         createNewMovie(newMovie).then(results => {
             action.payload.movies = results.data.movies;
@@ -37,12 +37,20 @@ export function createMovie(newMovie) {
     }
 }
 
-export function updateMovie(newMovie) {
-    return {
+export function updateMovie(updatedMovie) {
+    const action = {
         type: UPDATE_MOVIE,
         payload: {
-            movie: newMovie
+            movies: []
         }
+    }
+    
+    return dispatch => {
+        updateExistMovie(updatedMovie).then(results => {
+            debugger;
+            action.payload.movies = results.data.movies;
+            dispatch(action);
+        });      
     }
 }
 

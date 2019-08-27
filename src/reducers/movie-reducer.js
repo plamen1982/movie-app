@@ -9,13 +9,14 @@ import {
 export default function movieReducer(state = [], { type, payload }) {
     switch(type) {
         case CREATE_MOVIE:
-            return [...payload.movies]
+            return [...payload.movies];
+
         case UPDATE_MOVIE:
-            return state;
-        case SHOW_ERROR:
-            return state;
+            return [...payload.movies];
+
         case GET_ALL_MOVIES:
             return [...payload.movies];
+
         case FILTER_MOVIES:
             const filteredMovies = state.filter(movie => { 
                 if(movie.name) {

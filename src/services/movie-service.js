@@ -1,4 +1,4 @@
-import { get, post, remove } from '../data/api';
+import { get, post, put, remove } from '../data/api';
 
 const baseUrl = 'https://afternoon-chamber-67331.herokuapp.com'; 
 
@@ -20,4 +20,15 @@ export function getAllMovies() {
 export function createNewMovie(newMovie) {
     const movieUrl = `${baseUrl}/movies`;
     return post(movieUrl, newMovie);
+}
+
+/**
+ * update movie
+ * @returns {Promise} 
+ */
+
+export function updateExistMovie(updatedMovie) {
+    const movieId = updatedMovie.movieId;
+    const movieUrl = `${baseUrl}/movies/${movieId}`;
+    return put(movieUrl, updatedMovie);
 }
