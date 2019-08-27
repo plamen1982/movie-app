@@ -11,9 +11,11 @@ function App(props) {
 
   return (
       <div>
-        {props.movies.length > 0 && props.movies.map(movie => (
+        {props.movies.length > 0 ? props.movies.map(movie => (
         <div>{movie.name}</div>
-      ))}
+      ))
+      : <div>No movie with that search, please reset</div>
+    }
       </div>
   );
 }

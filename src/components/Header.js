@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { filterMovies } from '../actions/movie-actions';
@@ -6,19 +6,26 @@ import { getAllMoviesAction } from '../actions/movie-actions';
 
 function Header(props) {
     const [searchTerm, setSearchTerm] = useState('');
+    useEffect(() => {}, [searchTerm]);
+
+    function handleInputChange(event) {
+        let value  = event.target.value;
+        setSearchTerm(value);
+    }
 
     function handleSearch() {
        props.filterMovies(searchTerm);
     }
 
     function resetSearch() {
-        props.getAllMoviesAction();
+        debugger;
         setSearchTerm('');
+        props.getAllMoviesAction();
     }
 
     return(
         <div className="App">
-            <input onChange={(event) => setSearchTerm(event.target.value)} placeholder="Search for a movie"/>
+            <input onChange={handleInputChange} placeholder="Search for a movie" value={searchTerm}/>
             <button onClick={handleSearch}>Search</button>  
             <button onClick={resetSearch}>Reset Search</button>  
       </div>
