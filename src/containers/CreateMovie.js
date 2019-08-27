@@ -15,7 +15,7 @@ function CreateMovie(props) {
             released_on: releasedOn
         }
         props.createMovie(movieObject);
-        console.log(`name: ${name}, releasedOn: ${releasedOn}, disks: ${disk}`)
+        props.history.push('/');
     }
 
     function handleNameChange({ target: { value } }) {
