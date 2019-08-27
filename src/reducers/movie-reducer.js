@@ -2,16 +2,28 @@ import {
         UPDATE_MOVIE, 
         SHOW_ERROR,
         GET_ALL_MOVIES,
+        FILTER_MOVIES,
     } from '../actions/movie-actions';
 
-export default function userReducer(state = [], { type, payload }) {
+export default function movieReducer(state = [], { type, payload }) {
+    debugger;
     switch(type) {
         case UPDATE_MOVIE:
-            return payload.movie;
+            return state;
         case SHOW_ERROR:
-            return payload.error;
+            return state;
         case GET_ALL_MOVIES:
-            return payload.movies
+            debugger;
+            return [...payload.movies];
+        case FILTER_MOVIES:
+            const filteredMovies = state.filter(movie => { 
+                if(movie.name) {
+                   return movie.name.toLowerCase().includes(payload.filter.toLowerCase());
+                }
+            });
+            debugger;
+            return filteredMovies;
+
         default: return state;
     }
 }

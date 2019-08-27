@@ -1,19 +1,25 @@
-import $ from 'jquery';
+import { getAllMovies } from '../services/movie-service';
+
 export const UPDATE_MOVIE = 'movie:updateMovie';
 export const GET_ALL_MOVIES = 'movies:getAllMovies';
 export const SHOW_ERROR = 'movies:showError';
+export const FILTER_MOVIES = 'movies:filterMovies';
 
-export function getAllMoviesAction(movies) {
-    debugger;
-    return {
+export function getAllMoviesAction() {
+    const action = {
         type: GET_ALL_MOVIES,
         payload: {
-            // status: moviesData.data.state,
-            // message: moviesData.data.message,
-            movies,
+            movies: []
         }
     }
+    return dispatch => {
+        getAllMovies().then(results => {
+            action.payload.movies = results.data.movies;
+            dispatch(action);
+        });      
+    }
 }
+
 
 export function updateMovie(newMovie) {
     return {
@@ -29,6 +35,15 @@ export function showError() {
         type: SHOW_ERROR,
         payload: {
             movie: 'ERROR'
+        }
+    }
+}
+
+export function filterMovies(searchTerm) {
+    return {
+        type: FILTER_MOVIES,
+        payload: {
+            filter: searchTerm
         }
     }
 }

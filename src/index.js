@@ -1,12 +1,16 @@
 import React from "react";
-import ReactDOM from "react-dom";
-import "./index.css";
-import App from "./App";
-import * as serviceWorker from "./serviceWorker";
+import { render } from "react-dom";
 import { applyMiddleware, compose, combineReducers, createStore } from "redux";
-import thunk from 'redux-thunk';
 import { Provider } from 'react-redux';
+import thunk from 'redux-thunk';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+
 import moviesReducer from './reducers/movie-reducer';
+import App from "./containers/App";
+import Header from "./components/Header";
+import { getAllMoviesAction } from './actions/movie-actions';
+import { connect } from 'react-redux';
+import "./index.css";
 
 
 const allReducers = combineReducers({ movies: moviesReducer });
@@ -17,15 +21,32 @@ const allStoreEnhancers = compose(
 
 const store = createStore(
         allReducers, 
-        { movies: [{ }],},
+        { movies: [{ name: 'Lord of the rings' }],},
         allStoreEnhancers
-        );
+    );
 
-console.log(store.getState());
+function mapStateToProps(state, props) {
+    return { 
+        movies: state.movies
+        }
+    }
 
-ReactDOM.render(<Provider store={store}><App/></Provider>, document.getElementById("root"));
+const mapDispatchToProps = {
+    getAllMoviesAction
+}
+       
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+render(
+    <Provider store={store}>
+        <Router>
+            <Header />
+            <Switch>
+                <Route exact path='/movies' component={App} />
+                {/* <Route path='/movie/:movieId' component={} /> */}
+            </Switch>
+            {/* <Footer /> */}
+        </Router>
+    </Provider>, document.getElementById("root")
+);
+
+export default connect(mapStateToProps, mapDispatchToProps)(Router);
