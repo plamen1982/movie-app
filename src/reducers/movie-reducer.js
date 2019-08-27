@@ -19,7 +19,7 @@ export default function movieReducer(state = [], { type, payload }) {
         case FILTER_MOVIES:
             return state.filter(movie => { 
                     if(movie.name) {
-                    return movie.name.toLowerCase().includes(payload.filter.toLowerCase());
+                        return movie.name.toLowerCase().includes(payload.filter.toLowerCase());
                     }
                 });
 
