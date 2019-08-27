@@ -4,7 +4,7 @@ export const GET_ALL_MOVIES = 'movies:getAllMovies';
 export const SHOW_ERROR = 'movies:showError';
 
 export function getAllMoviesAction(movies) {
- 
+    debugger;
     return {
         type: GET_ALL_MOVIES,
         payload: {

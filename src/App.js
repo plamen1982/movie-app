@@ -5,36 +5,43 @@ import { getAllMoviesAction } from './actions/movie-actions';
 import { getAllMovies } from './services/movie-service';
 
 function App(props) {
-  debugger;
-  const [movies, setMovies] = useState(props.movies);
+
   const [searchTerm, setSearchTerm] = useState('');
+  const [filteredMovies, setFilteredMovies] = useState(props.movies);
 
   useEffect (() => {
     getAllMovies().then(result => {
       const movies = result.data.movies;
-      
-      setMovies(movies);
-    });
-  }, [movies])
- 
-  function onGetAllMovies({ target: { value } }) {
-    props.onGetAllMovies(movies);
-  }
 
-  function handleOnChange(event) {
-    debugger
+      setFilteredMovies(movies);
+      props.getAllMoviesAction(movies);
+    });
+  }, [])
+ 
+  function handleSearch() {
+    if(searchTerm.length === 0) {
+      setFilteredMovies(props.movies)
+    } else {
+      const searchedMovies = filteredMovies.filter(movie => {
+        if(movie.name) {
+          return movie.name.includes(searchTerm);
+        }
+      });
+      setFilteredMovies(searchedMovies);
+    }
   }
   
   return (
     <>
       <div className="App">
-        <input onChange={handleOnChange} placeholder="Search for a movie"/>
-        <button onClick={onGetAllMovies}>Search</button>
-        {props.user}
+        <input onChange={(event) => setSearchTerm(event.target.value)} placeholder="Search for a movie"/>
+        <button onClick={handleSearch}>Search</button>  
       </div>
-      <div>{movies.length > 0 && movies.map(movie => (
+      <div>
+        {filteredMovies.length > 0 && filteredMovies.map(movie => (
         <div>{movie.name}</div>
-      ))}</div>
+      ))}
+      </div>
     </>
   );
 }
@@ -47,7 +54,7 @@ function mapStateToProps(state, props) {
 }
 
 const mapDispatchToProps = {
-  onGetAllMovies: getAllMoviesAction,
+  getAllMoviesAction,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

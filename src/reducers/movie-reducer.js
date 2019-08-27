@@ -5,8 +5,6 @@ import {
     } from '../actions/movie-actions';
 
 export default function userReducer(state = [], { type, payload }) {
-    debugger;
-
     switch(type) {
         case UPDATE_MOVIE:
             return payload.movie;
