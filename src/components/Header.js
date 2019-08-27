@@ -23,9 +23,12 @@ function Header(props) {
         props.getAllMoviesAction();
     }
 
+    const styles = {
+        width: '230px'
+    }
     return(
         <div className="App">
-            <input onChange={handleInputChange} placeholder="Search for a movie" value={searchTerm}/>
+            <input onChange={handleInputChange} placeholder="Search for a movie by name" value={searchTerm} style={styles}/>
             <button onClick={handleSearch}>Search</button>  
             <button onClick={resetSearch}>Reset Search</button>  
       </div>
