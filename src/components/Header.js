@@ -34,7 +34,7 @@ function Header(props) {
                 <div>
                     <Navbar bg="light" expand="lg">
                         <Navbar.Brand>Movie App</Navbar.Brand>
-                        <Nav.Link><Link to={'/movies'}>Home</Link></Nav.Link>
+                        <Link to={'/movies'} style={styles}>Home</Link>
                         <Form inline>
                             <FormControl type="text" className="mr-sm-2" onChange={handleInputChange} placeholder="Search for a movie by name" value={searchTerm}/>
                             <Button variant="outline-success" onClick={handleSearch}>Search</Button>
@@ -45,7 +45,7 @@ function Header(props) {
                 </div> 
                 : <Navbar bg="light" expand="lg"> 
                     <Navbar.Brand href="#home">Movie App</Navbar.Brand>
-                    <Nav.Link><Link to={'/movies'}>Home</Link></Nav.Link>
+                    <Link to={'/movies'} style={styles}>Home</Link>
                 </Navbar>
             }
 
