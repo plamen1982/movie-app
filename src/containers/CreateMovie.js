@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { connect } from 'react-redux';
 import { createMovie } from '../actions/movie-actions';
+import { Form, Button } from 'react-bootstrap';
 
 function CreateMovie(props) {
     const [name, setName] = useState('');
@@ -30,34 +31,50 @@ function CreateMovie(props) {
         setDisk(value);
     }
 
+    const style = {
+        marginBottom: '20px'
+    }
+    
     return(
-        <form onSubmit={handleSubmit}>
-            <input
+        <Form onSubmit={handleSubmit}>
+            <Form.Text className="text-muted">
+                Movie Name
+            </Form.Text>
+            <Form.Control
                 onChange={handleNameChange}
                 value={name}
                 name="name"
-                placeholder="A name for your movie"
+                placeholder="Movie Name"
                 autoComplete="off"
                 type="text"
+                style={style}
             />
-            <input
+            <Form.Text className="text-muted">
+                Released On
+            </Form.Text>
+            <Form.Control
                 onChange={handleReleasedOn}
                 value={releasedOn}
                 name="releasedOn"
                 placeholder="Released on: xx/xx/xxxx"
                 autoComplete="off"
                 type="text"
+                style={style}
             />
-            <input
+            <Form.Text className="text-muted">
+                Number of Disks
+            </Form.Text>
+            <Form.Control
                 onChange={handleNumberOfDisks}
                 value={disk}
                 name="releasedOn"
-                placeholder="Number of disk"
+                placeholder="Number of Disks"
                 autoComplete="off"
                 type="number"
+                style={style}
             />
-            <button className="button" type="submit">Submit</button>
-        </form>
+            <Button className="button" type="submit">Create Movie</Button>
+        </Form>
     );
 }
 
