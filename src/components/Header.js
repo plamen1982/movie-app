@@ -39,7 +39,8 @@ function Header(props) {
                 </Form>
             </Navbar>
             <Alert variant="info">Currently {props.movies.length} movies listed</Alert>
-        </>
+        </> 
+        
     )
 }
 
