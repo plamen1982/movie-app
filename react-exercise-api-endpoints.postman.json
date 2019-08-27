@@ -1,0 +1,145 @@
+{
+	"info": {
+		"_postman_id": "d55d3396-b675-4c36-9f89-d991a72b166a",
+		"name": "Movies Copy",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "/movies",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "x-access-token",
+						"type": "text",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVkNWUzMzJmYzYxMDVjMDAwNGJmN2ZiOSIsImlhdCI6MTU2NjQ1NDU3NSwiZXhwIjoxNTY3MDU5Mzc1fQ.aKgav_4eRayMPaA-jW-R5OS5rQo4Mre0jErFhbD9w9g"
+					},
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"Movie name\",\n\t\"released_on\": \"02/02/2020\",\n\t\"disk\": \"1\"\n}"
+				},
+				"url": {
+					"raw": "https://afternoon-chamber-67331.herokuapp.com/movies",
+					"protocol": "https",
+					"host": [
+						"afternoon-chamber-67331",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"movies"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/movies",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-access-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVkNWUzMzJmYzYxMDVjMDAwNGJmN2ZiOSIsImlhdCI6MTU2NjQ1NDU3NSwiZXhwIjoxNTY3MDU5Mzc1fQ.aKgav_4eRayMPaA-jW-R5OS5rQo4Mre0jErFhbD9w9g",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://afternoon-chamber-67331.herokuapp.com/movies",
+					"protocol": "https",
+					"host": [
+						"afternoon-chamber-67331",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"movies"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/movies/5d4c2115335af0000408ff28",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "x-access-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVkNWUzMzJmYzYxMDVjMDAwNGJmN2ZiOSIsImlhdCI6MTU2NjQ1NDU3NSwiZXhwIjoxNTY3MDU5Mzc1fQ.aKgav_4eRayMPaA-jW-R5OS5rQo4Mre0jErFhbD9w9g",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \r\n\t\"disk\": \"New disk\",\r\n\t\"genres\": [\"HORROR\"],\r\n\t\"isWatched\": false,\r\n\t\"name\": \"New name\",\r\n\t\"rating\": 10,\r\n\t\"released_on\": \"02/02/2020\"\r\n\t\r\n}"
+				},
+				"url": {
+					"raw": "https://afternoon-chamber-67331.herokuapp.com/movies/5d5e340ac6105c0004bf7fbb",
+					"protocol": "https",
+					"host": [
+						"afternoon-chamber-67331",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"movies",
+						"5d5e340ac6105c0004bf7fbb"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/movies/5d4c2115335af0000408ff28 Copy",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "x-access-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVkNWUzMzJmYzYxMDVjMDAwNGJmN2ZiOSIsImlhdCI6MTU2NjQ1NDU3NSwiZXhwIjoxNTY3MDU5Mzc1fQ.aKgav_4eRayMPaA-jW-R5OS5rQo4Mre0jErFhbD9w9g",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \r\n\t\"disk\": \"New disk\",\r\n\t\"genres\": [\"HORROR\"],\r\n\t\"isWatched\": false,\r\n\t\"name\": \"New name\",\r\n\t\"rating\": 10,\r\n\t\"released_on\": \"02/02/2020\"\r\n\t\r\n}"
+				},
+				"url": {
+					"raw": "https://afternoon-chamber-67331.herokuapp.com/movies/5d5e340ac6105c0004bf7fbb",
+					"protocol": "https",
+					"host": [
+						"afternoon-chamber-67331",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"movies",
+						"5d5e340ac6105c0004bf7fbb"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
