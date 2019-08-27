@@ -32,3 +32,13 @@ export function updateExistMovie(updatedMovie) {
     const movieUrl = `${baseUrl}/movies/${movieId}`;
     return put(movieUrl, updatedMovie);
 }
+
+/**
+ * delete movie
+ * @returns {Promise} 
+ */
+
+export function deleteExistMovie(movieId) {
+    const movieUrl = `${baseUrl}/movies/${movieId}`;
+    return remove(movieUrl);
+}

@@ -1,8 +1,7 @@
-import { getAllMovies, createNewMovie, updateExistMovie } from '../services/movie-service';
+import { getAllMovies, createNewMovie, updateExistMovie, deleteExistMovie } from '../services/movie-service';
 
 export const UPDATE_MOVIE = 'movie:updateMovie';
 export const GET_ALL_MOVIES = 'movies:getAllMovies';
-export const SHOW_ERROR = 'movies:showError';
 export const FILTER_MOVIES = 'movies:filterMovies';
 export const CREATE_MOVIE = 'movie:createMovie';
 
@@ -37,6 +36,22 @@ export function createMovie(newMovie) {
     }
 }
 
+export function deleteMovie(movieId) {
+    const action = {
+        type: CREATE_MOVIE,
+        payload: {
+            movies: []
+        }
+    }
+
+    return dispatch => {
+        deleteExistMovie(movieId).then(results => {
+            action.payload.movies = results.data.movies;
+            dispatch(action);
+        });      
+    }
+}
+
 export function updateMovie(updatedMovie) {
     const action = {
         type: UPDATE_MOVIE,
@@ -47,19 +62,9 @@ export function updateMovie(updatedMovie) {
     
     return dispatch => {
         updateExistMovie(updatedMovie).then(results => {
-            debugger;
             action.payload.movies = results.data.movies;
             dispatch(action);
         });      
-    }
-}
-
-export function showError() {
-    return {
-        type: SHOW_ERROR,
-        payload: {
-            movie: 'ERROR'
-        }
     }
 }
 

@@ -1,6 +1,5 @@
 import { 
         UPDATE_MOVIE, 
-        SHOW_ERROR,
         GET_ALL_MOVIES,
         FILTER_MOVIES,
         CREATE_MOVIE
@@ -18,12 +17,11 @@ export default function movieReducer(state = [], { type, payload }) {
             return [...payload.movies];
 
         case FILTER_MOVIES:
-            const filteredMovies = state.filter(movie => { 
-                if(movie.name) {
-                   return movie.name.toLowerCase().includes(payload.filter.toLowerCase());
-                }
-            });
-            return filteredMovies;
+            return state.filter(movie => { 
+                    if(movie.name) {
+                    return movie.name.toLowerCase().includes(payload.filter.toLowerCase());
+                    }
+                });
 
         default: return state;
     }
