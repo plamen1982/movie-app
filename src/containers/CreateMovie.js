@@ -34,7 +34,7 @@ function CreateMovie(props) {
     const style = {
         marginBottom: '20px'
     }
-    
+
     return(
         <Form onSubmit={handleSubmit}>
             <Form.Text className="text-muted">
@@ -73,7 +73,7 @@ function CreateMovie(props) {
                 type="number"
                 style={style}
             />
-            <Button className="button" type="submit">Create Movie</Button>
+            <Button className="button" type="submit" style={style}>Create Movie</Button>
         </Form>
     );
 }

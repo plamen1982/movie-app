@@ -77,7 +77,7 @@ function CreateMovie(props) {
                 type="number"
                 style={style}
             />
-            <Button className="button" type="submit">Submit</Button>
+            <Button className="button" type="submit" style={style}>Submit</Button>
         </Form>
     );
 }

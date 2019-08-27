@@ -10,6 +10,7 @@ import { getAllMoviesAction } from './actions/movie-actions';
 
 import Main from './containers/Main';
 import Header from './components/Header';
+import Footer from './components/Footer';
 import MovieDetails from './containers/MovieDetails';
 import CreateMovie from './containers/CreateMovie';
 import UpdateMovie from './containers/UpdateMovie';
@@ -50,7 +51,7 @@ render(
                 <Route path='/update/:movieId' component={UpdateMovie} />
                 <Route path='/create' component={CreateMovie} />
             </Switch>
-            {/* <Footer /> */}
+            <Footer/>
         </Router>
     </Provider>, document.getElementById('root')
 );
