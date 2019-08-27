@@ -6,7 +6,6 @@ import { getAllMoviesAction } from '../actions/movie-actions';
 import { withRouter } from "react-router-dom";
 
 function Header(props) {
-    debugger;
     const isMoviesPage = props.location.pathname.includes('movies');
     const [searchTerm, setSearchTerm] = useState('');
     useEffect(() => {}, [searchTerm]);
@@ -21,7 +20,6 @@ function Header(props) {
     }
 
     function resetSearch() {
-        debugger;
         setSearchTerm('');
         props.getAllMoviesAction();
     }
