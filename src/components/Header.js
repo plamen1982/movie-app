@@ -33,15 +33,22 @@ function Header(props) {
             <input onChange={handleInputChange} placeholder="Search for a movie by name" value={searchTerm} style={styles}/>
             <button onClick={handleSearch}>Search</button>  
             <button onClick={resetSearch}>Reset Search</button>  
+            <div>Currently {props.movies.length} movies listed</div>
         </div>
     )
 }
 
-const mapDispatchToProps = (dispatch, props) => {
-   return  bindActionCreators({ 
+const mapDispatchToProps = (dispatch) => {
+    return  bindActionCreators({ 
             filterMovies,
             getAllMoviesAction
     }, dispatch);
-  }
+}
 
-export default connect(null, mapDispatchToProps)(withRouter(Header));
+function mapStateToProps(state) {
+    return { 
+       movies: state.movies
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Header));

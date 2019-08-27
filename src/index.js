@@ -10,7 +10,7 @@ import { getAllMoviesAction } from './actions/movie-actions';
 
 import Main from './containers/Main';
 import Header from './components/Header';
-import MovieDetails from './components/MovieDetails';
+import MovieDetails from './containers/MovieDetails';
 
 import './index.css';
 
