@@ -23,12 +23,13 @@ function App(props) {
             <div>Released On: {movie.released_on}</div>
             <div>Number of Disks: {movie.disk}</div>
             <div>Is Movie Watched: {movie.isWatched ? 'Yes' : 'No'}</div>
+            <Link to={`/details/${movie._id}`} style={border}>Details</Link>
             <Link to={`/create`} style={border}>Create Movie</Link>
-            <Link to={`/update/${movie.id}`} style={border}>Update</Link>
+            <Link to={`/update/${movie._id}`} style={border}>Update</Link>
             <Link to={`/delete/${movie._id}`} style={border}>Delete Movie</Link>
           </div>
       ))
-      : <div>No movie with that search, please reset</div>
+      : <div>No movies found</div>
     }
       </div>
   );

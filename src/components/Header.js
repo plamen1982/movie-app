@@ -3,8 +3,11 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { filterMovies } from '../actions/movie-actions';
 import { getAllMoviesAction } from '../actions/movie-actions';
+import { withRouter } from "react-router-dom";
 
 function Header(props) {
+    debugger;
+    const isMoviesPage = props.location.pathname.includes('movies');
     const [searchTerm, setSearchTerm] = useState('');
     useEffect(() => {}, [searchTerm]);
 
@@ -27,14 +30,14 @@ function Header(props) {
         width: '230px'
     }
     return(
+        isMoviesPage && 
         <div className="App">
             <input onChange={handleInputChange} placeholder="Search for a movie by name" value={searchTerm} style={styles}/>
             <button onClick={handleSearch}>Search</button>  
             <button onClick={resetSearch}>Reset Search</button>  
-      </div>
+        </div>
     )
 }
-
 
 const mapDispatchToProps = (dispatch, props) => {
    return  bindActionCreators({ 
@@ -43,4 +46,4 @@ const mapDispatchToProps = (dispatch, props) => {
     }, dispatch);
   }
 
-export default connect(null, mapDispatchToProps)(Header);
+export default connect(null, mapDispatchToProps)(withRouter(Header));

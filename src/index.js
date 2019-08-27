@@ -3,10 +3,10 @@ import { render } from "react-dom";
 import { applyMiddleware, compose, combineReducers, createStore } from "redux";
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch, Redirect, withRouter } from 'react-router-dom';
 
 import moviesReducer from './reducers/movie-reducer';
-import App from "./containers/App";
+import Main from "./containers/Main";
 import Header from "./components/Header";
 import { getAllMoviesAction } from './actions/movie-actions';
 import { connect } from 'react-redux';
@@ -21,7 +21,7 @@ const allStoreEnhancers = compose(
 
 const store = createStore(
         allReducers, 
-        { movies: [{ name: 'Lord of the rings' }],},
+        { movies: []},
         allStoreEnhancers
     );
 
@@ -41,7 +41,8 @@ render(
         <Router>
             <Header />
             <Switch>
-                <Route exact path='/movies' component={App} />
+                <Route exact path='/' render={() => <Redirect to="/movies" />}></Route>
+                <Route path = '/movies' component={Main}/>
                 {/* <Route path='/movie/:movieId' component={} /> */}
             </Switch>
             {/* <Footer /> */}
