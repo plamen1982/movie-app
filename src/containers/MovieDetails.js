@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from 'react-redux';
+import MovieItem from '../components/MovieItem';
 
 function MovieDetails(props) {
     const { match: { params: { movieId } } } = props;
@@ -11,13 +12,7 @@ function MovieDetails(props) {
         margin: '3px'
       }
     return(
-        <div style={border}>
-            <div>Name: {currentMovie.name}</div>
-            <div>Released On: {currentMovie.released_on}</div>
-            <div>Number of Disks: {currentMovie.disk}</div>
-            <div>Is Movie Watched: {currentMovie.isWatched ? 'Yes' : 'No'}</div>
-        </div>
-
+        <MovieItem movie={currentMovie} areMovieDetails={true} />
     );
 }
 

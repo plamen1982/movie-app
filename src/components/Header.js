@@ -3,8 +3,8 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { filterMovies } from '../actions/movie-actions';
 import { getAllMoviesAction } from '../actions/movie-actions';
-import { withRouter } from "react-router-dom";
-import { Navbar, Form, FormControl, Button, Alert } from 'react-bootstrap';
+import { withRouter, Link } from "react-router-dom";
+import { Navbar, Form, FormControl, Button, Alert, Nav } from 'react-bootstrap';
 
 function Header(props) {
     const isMoviesPage = props.location.pathname.includes('movies');
@@ -29,16 +29,26 @@ function Header(props) {
         margin: '20px'
     }
     return(
-        isMoviesPage && 
         <>
-            <Navbar bg="light" expand="lg">
-                <Form inline>
-                    <FormControl type="text" className="mr-sm-2" onChange={handleInputChange} placeholder="Search for a movie by name" value={searchTerm}/>
-                    <Button variant="outline-success" onClick={handleSearch}>Search</Button>
-                    <Button variant="outline-success" onClick={resetSearch} style={styles}> Reset Search</Button>
-                </Form>
-            </Navbar>
-            <Alert variant="info">Currently {props.movies.length} movies listed</Alert>
+            {isMoviesPage ? 
+                <div>
+                    <Navbar bg="light" expand="lg">
+                        <Navbar.Brand>Movie App</Navbar.Brand>
+                        <Nav.Link><Link to={'/movies'}>Home</Link></Nav.Link>
+                        <Form inline>
+                            <FormControl type="text" className="mr-sm-2" onChange={handleInputChange} placeholder="Search for a movie by name" value={searchTerm}/>
+                            <Button variant="outline-success" onClick={handleSearch}>Search</Button>
+                            <Button variant="outline-success" onClick={resetSearch} style={styles}> Reset Search</Button>
+                        </Form>
+                    </Navbar>
+                    <Alert variant="info">Currently {props.movies.length} movies listed</Alert>
+                </div> 
+                : <Navbar bg="light" expand="lg"> 
+                    <Navbar.Brand href="#home">Movie App</Navbar.Brand>
+                    <Nav.Link><Link to={'/movies'}>Home</Link></Nav.Link>
+                </Navbar>
+            }
+
         </> 
         
     )

@@ -4,7 +4,7 @@ import { deleteMovie } from '../actions/movie-actions';
 import { connect } from 'react-redux';
 import { Button, Card } from 'react-bootstrap';
 
-function MovieItem({ movie, deleteMovie }) {
+function MovieItem({ movie, deleteMovie, areMovieDetails }) {
     const customStyles = {
         color: 'white',
         margin: '7px'
@@ -26,10 +26,16 @@ function MovieItem({ movie, deleteMovie }) {
             <Card.Text>
                 Is Movie Watched: {movie.isWatched ? 'Yes' : 'No'}
             </Card.Text>
-                <Button variant="primary" style={customStyles}><Link to={`/movie/${movie._id}`} style={customStyles}>Details</Link></Button>
-                <Button variant="success" style={customStyles}><Link to={`/create`} style={customStyles}>Create Movie</Link></Button>
-                <Button variant="warning" style={customStyles}><Link to={`/update/${movie._id}`} style={customStyles}>Update</Link></Button>
-                <Button variant="danger" onClick={handleDelete} style={customStyles}>Delete Movie</Button>
+            {areMovieDetails ? 
+                <div></div> : 
+                <div>
+                    <Button variant="primary" style={customStyles}><Link to={`/movie/${movie._id}`} style={customStyles}>Details</Link></Button>
+                    <Button variant="success" style={customStyles}><Link to={`/create`} style={customStyles}>Create Movie</Link></Button>
+                    <Button variant="warning" style={customStyles}><Link to={`/update/${movie._id}`} style={customStyles}>Update</Link></Button>
+                    <Button variant="danger" onClick={handleDelete} style={customStyles}>Delete Movie</Button>
+                </div>
+            }
+
             </Card.Body>
         </Card>
     )
