@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { deleteMovie } from '../actions/movie-actions';
 import { connect } from 'react-redux';
-import { Button, Jumbotron, Container, Row, Col, Image, Card } from 'react-bootstrap';
+import { Button, Card } from 'react-bootstrap';
 
 function MovieItem({ movie, deleteMovie }) {
     const customStyles = {
