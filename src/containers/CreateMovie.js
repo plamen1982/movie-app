@@ -1,30 +1,69 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import { connect } from 'react-redux';
+import { createMovie } from '../actions/movie-actions';
 
 function CreateMovie(props) {
-    const { match: { params: { movieId } } } = props;
-    const currentMovie = props.movies.find(movie => movie._id === movieId);
+    const [name, setName] = useState('');
+    const [releasedOn, setReleasedOn] = useState('');
+    const [disk, setDisk] = useState(1);
 
-    const border = {
-        border: '1px solid black',
-        padding: '1px',
-        margin: '3px'
-      }
+    function handleSubmit(event) {
+        event.preventDefault();
+        const movieObject = {
+            name,
+            disk,
+            released_on: releasedOn
+        }
+        props.createMovie(movieObject);
+        console.log(`name: ${name}, releasedOn: ${releasedOn}, disks: ${disk}`)
+    }
+
+    function handleNameChange({ target: { value } }) {
+        setName(value);
+    }
+
+    function handleReleasedOn({ target: { value } }) {
+        setReleasedOn(value);
+    }
+
+    function handleNumberOfDisks({ target: { value } }) {
+        setDisk(value);
+    }
+
     return(
-        <div style={border}>
-            <div>Name: {currentMovie.name}</div>
-            <div>Released On: {currentMovie.released_on}</div>
-            <div>Number of Disks: {currentMovie.disk}</div>
-            <div>Is Movie Watched: {currentMovie.isWatched ? 'Yes' : 'No'}</div>
-        </div>
-
+        <form onSubmit={handleSubmit}>
+            <input
+                onChange={handleNameChange}
+                value={name}
+                name="name"
+                placeholder="A name for your movie"
+                autoComplete="off"
+                type="text"
+            />
+            <input
+                onChange={handleReleasedOn}
+                value={releasedOn}
+                name="releasedOn"
+                placeholder="Released on: xx/xx/xxxx"
+                autoComplete="off"
+                type="text"
+            />
+            <input
+                onChange={handleNumberOfDisks}
+                value={disk}
+                name="releasedOn"
+                placeholder="Number of disk"
+                autoComplete="off"
+                type="number"
+            />
+            <button className="button" type="submit">Submit</button>
+        </form>
     );
 }
 
-function mapStateToProps(state, props) {
-    return { 
-       movies: state.movies
-    }
-}
+
+const mapDispatchToProps = {
+    createMovie
+  }
    
-export default connect(mapStateToProps)(CreateMovie);
+export default connect(null, mapDispatchToProps)(CreateMovie);

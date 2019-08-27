@@ -11,6 +11,7 @@ import { getAllMoviesAction } from './actions/movie-actions';
 import Main from './containers/Main';
 import Header from './components/Header';
 import MovieDetails from './containers/MovieDetails';
+import CreateMovie from './containers/CreateMovie';
 
 import './index.css';
 
@@ -45,6 +46,7 @@ render(
                 <Route exact path='/' render={() => <Redirect to='/movies' />}></Route>
                 <Route path = '/movies' component={Main}/>
                 <Route path='/movie/:movieId' component={MovieDetails} />
+                <Route path='/create' component={CreateMovie} />
             </Switch>
             {/* <Footer /> */}
         </Router>

@@ -13,11 +13,11 @@ export function getAllMovies() {
 }
 
 /**
- * get movie by movieId
+ * create movie
  * @returns {Promise} 
  */
 
-export function getMovieById(movieId) {
-    const movieUrl = `${baseUrl}/movie/${movieId}`;
-    return get(movieUrl);
+export function createNewMovie(newMovie) {
+    const movieUrl = `${baseUrl}/movies`;
+    return post(movieUrl, newMovie);
 }
