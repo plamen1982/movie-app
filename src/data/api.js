@@ -1,12 +1,12 @@
 /**
- * Create a customable closure for fetching data based on the CRUD methods. 
+ * Create a customable closure for fetching data based on the CRUD methods.
  * @param {String} method
  * @returns { Function }
  * @example const get = requester("get");
  */
 const requester = method => {
     const getAuthHeader = () => {
-        const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVkNWUzMzJmYzYxMDVjMDAwNGJmN2ZiOSIsImlhdCI6MTU2NjQ1NDU3NSwiZXhwIjoxNTY3MDU5Mzc1fQ.aKgav_4eRayMPaA-jW-R5OS5rQo4Mre0jErFhbD9w9g';
+        const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVkNWUzMzJmYzYxMDVjMDAwNGJmN2ZiOSIsImlhdCI6MTU2ODA5NTUyMywiZXhwIjoxNTY4NzAwMzIzfQ.ioMYnX7zCmRKXfmPJvMSL5ErpGAtWXAjGUbzeh7fHYQ';
         return { "x-access-token": token };
     };
 

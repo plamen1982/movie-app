@@ -24,21 +24,22 @@ const allStoreEnhancers = compose(
 );
 
 const store = createStore(
-        allReducers, 
-        { movies: []},
+        allReducers,
+        {},
         allStoreEnhancers
     );
 
 function mapStateToProps(state, props) {
-    return { 
-        movies: state.movies
+    return {
+        movies: state.movies.movies,
+        searchTerm: ''
         }
     }
 
 const mapDispatchToProps = {
     getAllMoviesAction
 }
-       
+
 
 render(
     <Provider store={store}>

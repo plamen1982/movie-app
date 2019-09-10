@@ -41,8 +41,8 @@ function App({movies, getAllMoviesAction}) {
 
 
 function mapStateToProps(state) {
- return { 
-    movies: state.movies
+ return {
+    movies: state.movies.movies // movies: getFileteredMovies(state)
   }
 }
 

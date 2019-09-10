@@ -1,24 +1,33 @@
 import { getAllMovies, createNewMovie, updateExistMovie, deleteExistMovie } from '../services/movie-service';
 
 export const UPDATE_MOVIE = 'movie:updateMovie';
-export const GET_ALL_MOVIES = 'movies:getAllMovies';
+export const SET_ALL_MOVIES = 'movies:setAllMovies';
 export const FILTER_MOVIES = 'movies:filterMovies';
 export const CREATE_MOVIE = 'movie:createMovie';
 
-export function getAllMoviesAction() {
-    const action = {
-        type: GET_ALL_MOVIES,
-        payload: {
-            movies: []
-        }
-    }
-    return dispatch => {
-        getAllMovies().then(results => {
-            action.payload.movies = results.data.movies;
-            dispatch(action);
-        });      
-    }
+export const getAllMoviesAction = () => (dispatch) => {
+    getAllMovies().then(result => {
+        dispatch({
+            type: SET_ALL_MOVIES,
+            payload: result.data.movies
+        });
+    });
 }
+
+// export function getAllMoviesAction() {
+//     const action = {
+//         type: SET_ALL_MOVIES,
+//         payload: {
+//             movies: []
+//         }
+//     }
+//     return dispatch => {
+//         getAllMovies().then(results => {
+//             action.payload.movies = results.data.movies;
+//             dispatch(action);
+//         });
+//     }
+// }
 
 export function createMovie(newMovie) {
     const action = {
@@ -32,7 +41,7 @@ export function createMovie(newMovie) {
         createNewMovie(newMovie).then(results => {
             action.payload.movies = results.data.movies;
             dispatch(action);
-        });      
+        });
     }
 }
 
@@ -48,7 +57,7 @@ export function deleteMovie(movieId) {
         deleteExistMovie(movieId).then(results => {
             action.payload.movies = results.data.movies;
             dispatch(action);
-        });      
+        });
     }
 }
 
@@ -59,12 +68,12 @@ export function updateMovie(updatedMovie) {
             movies: []
         }
     }
-    
+
     return dispatch => {
         updateExistMovie(updatedMovie).then(results => {
             action.payload.movies = results.data.movies;
             dispatch(action);
-        });      
+        });
     }
 }
 

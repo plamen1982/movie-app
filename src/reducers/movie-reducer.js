@@ -1,27 +1,33 @@
-import { 
-        UPDATE_MOVIE, 
-        GET_ALL_MOVIES,
+import {
+        UPDATE_MOVIE,
+        SET_ALL_MOVIES,
         FILTER_MOVIES,
         CREATE_MOVIE
     } from '../actions/movie-actions';
 
-export default function movieReducer(state = [], { type, payload }) {
+const DEFAULT_STATE = {
+    movies: [],
+    searchTerm: ''
+}
+
+// default state should be []
+// use this reducers to store only movies
+export default function movieReducer(state = DEFAULT_STATE, { type, payload }) {
     switch(type) {
         case CREATE_MOVIE:
-            return [...payload.movies];
+            return { movies: [...payload.movies], searchTerm: ''};
 
         case UPDATE_MOVIE:
-            return [...payload.movies];
+            return { movies: [...payload.movies], searchTerm: ''};
 
-        case GET_ALL_MOVIES:
-            return [...payload.movies];
+        case SET_ALL_MOVIES:
+            return {
+                ...state,
+                movies: [...payload]
+            };
 
         case FILTER_MOVIES:
-            return state.filter(movie => { 
-                    if(movie.name) {
-                        return movie.name.toLowerCase().includes(payload.filter.toLowerCase());
-                    }
-                });
+            return { movies: state, searchTerm: payload.filter };
 
         default: return state;
     }
