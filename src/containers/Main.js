@@ -1,11 +1,12 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { getAllMoviesAction } from '../actions/movie-actions';
 import MovieItem from '../components/MovieItem';
 import { Spinner, Button, ButtonToolbar } from 'react-bootstrap';
 
-function App({movies, getAllMoviesAction}) {
-
+function App({movies, getAllMoviesAction, searchTerm}) {
+  const [filterMovies, setFilterMovies] = useState(searchTerm);
+  debugger;
   useEffect ((props) => {
     getAllMoviesAction();
   }, []);
@@ -42,7 +43,9 @@ function App({movies, getAllMoviesAction}) {
 
 function mapStateToProps(state) {
  return {
-    movies: state.movies.movies // movies: getFileteredMovies(state)
+    movies: state.movies.movies, // movies: getFileteredMovies(state)
+    searchTerm: state.searchTerm
+
   }
 }
 

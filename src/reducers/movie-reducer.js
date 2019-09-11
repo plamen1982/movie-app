@@ -15,10 +15,17 @@ const DEFAULT_STATE = {
 export default function movieReducer(state = DEFAULT_STATE, { type, payload }) {
     switch(type) {
         case CREATE_MOVIE:
-            return { movies: [...payload.movies], searchTerm: ''};
+        debugger;
+            return {
+                ...state,
+                movies: [...payload.movies]
+            };
 
         case UPDATE_MOVIE:
-            return { movies: [...payload.movies], searchTerm: ''};
+            return {
+                ...state,
+                movies: [...payload.movies]
+            };
 
         case SET_ALL_MOVIES:
             return {
@@ -27,7 +34,10 @@ export default function movieReducer(state = DEFAULT_STATE, { type, payload }) {
             };
 
         case FILTER_MOVIES:
-            return { movies: state, searchTerm: payload.filter };
+            return {
+                ...state,
+                searchTerm: payload.filter
+            };
 
         default: return state;
     }
