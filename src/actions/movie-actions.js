@@ -78,6 +78,7 @@ export function updateMovie(updatedMovie) {
 }
 
 export function filterMovies(searchTerm) {
+    debugger;
     return {
         type: FILTER_MOVIES,
         payload: {

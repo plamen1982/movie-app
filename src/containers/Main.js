@@ -5,11 +5,13 @@ import MovieItem from '../components/MovieItem';
 import { Spinner, Button, ButtonToolbar } from 'react-bootstrap';
 
 function App({movies, getAllMoviesAction, searchTerm}) {
-  const [filterMovies, setFilterMovies] = useState(searchTerm);
+  const [moviesToRender, setMoviesToRender] = useState([]);
   debugger;
+
   useEffect ((props) => {
     getAllMoviesAction();
-  }, []);
+    setMoviesToRender(moviesToRender.filter(movie => movie.name.includes(searchTerm)));
+  }, [moviesToRender]);
 
   const border = {
     border: '1px solid black',
@@ -18,11 +20,16 @@ function App({movies, getAllMoviesAction, searchTerm}) {
   }
 
   return (
+
       <div>
-        {movies.length > 0 ?
-          movies.map(movie => (
+        {moviesToRender.length > 0 ?
+          moviesToRender.map(movie => (
             <MovieItem movie={movie} style={border} key={movie._id}/>
       ))
+      : movies.length > 0 ?
+        movies.map(movie => (
+          <MovieItem movie={movie} style={border} key={movie._id} />
+        ))
       : <ButtonToolbar>
           <Button variant="primary" disabled>
             <Spinner
@@ -42,9 +49,10 @@ function App({movies, getAllMoviesAction, searchTerm}) {
 
 
 function mapStateToProps(state) {
+  debugger;
  return {
     movies: state.movies.movies, // movies: getFileteredMovies(state)
-    searchTerm: state.searchTerm
+    searchTerm: state.movies.searchTerm
 
   }
 }

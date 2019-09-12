@@ -30,7 +30,6 @@ const store = createStore(
     );
 
 function mapStateToProps(state, props) {
-    debugger;
     return {
         movies: state.movies.movies,
         searchTerm: ''

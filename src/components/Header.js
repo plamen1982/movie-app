@@ -14,9 +14,10 @@ function Header(props) {
     function handleInputChange(event) {
         let value  = event.target.value;
         setSearchTerm(value);
+        handleSearch(searchTerm);
     }
 
-    function handleSearch() {
+    function handleSearch(searchTerm) {
        props.filterMovies(searchTerm);
     }
 
@@ -30,7 +31,7 @@ function Header(props) {
     }
     return(
         <>
-            {isMoviesPage ? 
+            {isMoviesPage ?
                 <div>
                     <Navbar bg="light" expand="lg">
                         <Navbar.Brand>Movie App</Navbar.Brand>
@@ -42,27 +43,27 @@ function Header(props) {
                         </Form>
                     </Navbar>
                     <Alert variant="info">Currently {props.movies.length} movies listed</Alert>
-                </div> 
-                : <Navbar bg="light" expand="lg"> 
+                </div>
+                : <Navbar bg="light" expand="lg">
                     <Navbar.Brand href="#home">Movie App</Navbar.Brand>
                     <Link to={'/movies'} style={styles}>Home</Link>
                 </Navbar>
             }
 
-        </> 
-        
+        </>
+
     )
 }
 
 const mapDispatchToProps = (dispatch) => {
-    return  bindActionCreators({ 
+    return bindActionCreators({
             filterMovies,
             getAllMoviesAction
     }, dispatch);
 }
 
 function mapStateToProps(state) {
-    return { 
+    return {
        movies: state.movies
     }
 }
