@@ -5,7 +5,7 @@ import { Form, Button } from 'react-bootstrap';
 
 function CreateMovie(props) {
     const { match: { params: { movieId } } } = props;
-    const currentMovie = props.movies.find(movie => movie._id === movieId);
+    const currentMovie = props.movies.movies.find(movie => movie._id === movieId);
 
     const [name, setName] = useState(currentMovie.name);
     const [releasedOn, setReleasedOn] = useState(currentMovie.released_on);

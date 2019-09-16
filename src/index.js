@@ -17,6 +17,7 @@ import UpdateMovie from './containers/UpdateMovie';
 
 import './index.css';
 
+//TODO add searchTerm reducer
 const allReducers = combineReducers({ movies: moviesReducer });
 const allStoreEnhancers = compose(
     applyMiddleware(thunk),
@@ -30,16 +31,11 @@ const store = createStore(
     );
 
 function mapStateToProps(state, props) {
-    debugger;
     return {
         movies: state.movies.movies,
         searchTerm: ''
         }
     }
-
-const mapDispatchToProps = {
-    getAllMoviesAction
-}
 
 
 render(
@@ -58,4 +54,4 @@ render(
     </Provider>, document.getElementById('root')
 );
 
-export default connect(mapStateToProps, mapDispatchToProps)(Router);
+export default connect(mapStateToProps)(Router);

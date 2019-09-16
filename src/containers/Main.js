@@ -1,15 +1,26 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
-import { getAllMoviesAction } from '../actions/movie-actions';
+import { getAllMoviesAction, setSearchTerm } from '../actions/movie-actions';
 import MovieItem from '../components/MovieItem';
 import { Spinner, Button, ButtonToolbar } from 'react-bootstrap';
 
 function App({movies, getAllMoviesAction, searchTerm}) {
-  const [filterMovies, setFilterMovies] = useState(searchTerm);
-  debugger;
+  debugger
+  const [filterMovies, setFilterMovies] = useState([]);
+
   useEffect ((props) => {
     getAllMoviesAction();
   }, []);
+
+  useEffect ((props) => {
+    setSearchTerm(searchTerm);
+    setFilterMovies(movies);
+
+    if(movies.length > 0) {
+      const filteredMovies = movies.filter(movie => movie.name.toLowerCase().includes(searchTerm.toLowerCase()))
+      setFilterMovies(filteredMovies);
+    }
+  }, [searchTerm, movies]);
 
   const border = {
     border: '1px solid black',
@@ -19,8 +30,8 @@ function App({movies, getAllMoviesAction, searchTerm}) {
 
   return (
       <div>
-        {movies.length > 0 ?
-          movies.map(movie => (
+        {filterMovies.length > 0 ?
+          filterMovies.map(movie => (
             <MovieItem movie={movie} style={border} key={movie._id}/>
       ))
       : <ButtonToolbar>
@@ -44,7 +55,7 @@ function App({movies, getAllMoviesAction, searchTerm}) {
 function mapStateToProps(state) {
  return {
     movies: state.movies.movies, // movies: getFileteredMovies(state)
-    searchTerm: state.searchTerm
+    searchTerm: state.movies.searchTerm
 
   }
 }

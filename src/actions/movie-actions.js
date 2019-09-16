@@ -4,6 +4,7 @@ export const UPDATE_MOVIE = 'movie:updateMovie';
 export const SET_ALL_MOVIES = 'movies:setAllMovies';
 export const FILTER_MOVIES = 'movies:filterMovies';
 export const CREATE_MOVIE = 'movie:createMovie';
+export const SET_SEARCH_TERM = 'movie:searchTerm';
 
 export const getAllMoviesAction = () => (dispatch) => {
     getAllMovies().then(result => {
@@ -12,6 +13,14 @@ export const getAllMoviesAction = () => (dispatch) => {
             payload: result.data.movies
         });
     });
+}
+
+export const setSearchTerm = (searchTerm) => {
+    return {
+        type: SET_SEARCH_TERM,
+        payload: searchTerm
+    }
+
 }
 
 // export function getAllMoviesAction() {
@@ -78,6 +87,7 @@ export function updateMovie(updatedMovie) {
 }
 
 export function filterMovies(searchTerm) {
+    debugger;
     return {
         type: FILTER_MOVIES,
         payload: {
