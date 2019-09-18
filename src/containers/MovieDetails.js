@@ -4,7 +4,7 @@ import MovieItem from '../components/MovieItem';
 
 function MovieDetails(props) {
     const { match: { params: { movieId } } } = props;
-    const currentMovie = props.movies.find(movie => movie._id === movieId);
+    const currentMovie = props.movies.movies.find(movie => movie._id === movieId);
 
     const border = {
         border: '1px solid black',

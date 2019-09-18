@@ -15,6 +15,7 @@ const DEFAULT_STATE = {
 export default function movieReducer(state = DEFAULT_STATE, { type, payload }) {
     debugger;
     switch(type) {
+
         case CREATE_MOVIE:
             return {
                 ...state,
@@ -34,7 +35,6 @@ export default function movieReducer(state = DEFAULT_STATE, { type, payload }) {
             };
 
         case FILTER_MOVIES:
-        debugger;
             return {
                 ...state,
                 searchTerm: payload.filter

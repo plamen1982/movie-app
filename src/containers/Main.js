@@ -1,17 +1,27 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
-import { getAllMoviesAction } from '../actions/movie-actions';
+import { getAllMoviesAction, setSearchTerm } from '../actions/movie-actions';
 import MovieItem from '../components/MovieItem';
 import { Spinner, Button, ButtonToolbar } from 'react-bootstrap';
 
 function App({movies, getAllMoviesAction, searchTerm}) {
-  const [moviesToRender, setMoviesToRender] = useState([]);
-  debugger;
+
+  const [filterMovies, setFilterMovies] = useState([]);
 
   useEffect ((props) => {
     getAllMoviesAction();
     setMoviesToRender(moviesToRender.filter(movie => movie.name.includes(searchTerm)));
   }, [moviesToRender]);
+
+  useEffect ((props) => {
+    setSearchTerm(searchTerm);
+    setFilterMovies(movies);
+
+    if(movies.length > 0) {
+      const filteredMovies = movies.filter(movie => movie.name.toLowerCase().includes(searchTerm.toLowerCase()))
+      setFilterMovies(filteredMovies);
+    }
+  }, [searchTerm, movies]);
 
   const border = {
     border: '1px solid black',
@@ -22,8 +32,8 @@ function App({movies, getAllMoviesAction, searchTerm}) {
   return (
 
       <div>
-        {moviesToRender.length > 0 ?
-          moviesToRender.map(movie => (
+        {filterMovies.length > 0 ?
+          filterMovies.map(movie => (
             <MovieItem movie={movie} style={border} key={movie._id}/>
       ))
       : movies.length > 0 ?

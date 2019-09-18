@@ -14,10 +14,11 @@ function Header(props) {
     function handleInputChange(event) {
         let value  = event.target.value;
         setSearchTerm(value);
-        handleSearch(searchTerm);
+        props.filterMovies(searchTerm);
     }
 
-    function handleSearch(searchTerm) {
+    function handleSearch() {
+
        props.filterMovies(searchTerm);
     }
 

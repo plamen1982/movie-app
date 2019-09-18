@@ -26,8 +26,8 @@ function MovieItem({ movie, deleteMovie, areMovieDetails }) {
             <Card.Text>
                 Is Movie Watched: {movie.isWatched ? 'Yes' : 'No'}
             </Card.Text>
-            {areMovieDetails ? 
-                <div></div> : 
+            {areMovieDetails ?
+                <div></div> :
                 <div>
                     <Button variant="primary" style={customStyles}><Link to={`/movie/${movie._id}`} style={customStyles}>Details</Link></Button>
                     <Button variant="success" style={customStyles}><Link to={`/create`} style={customStyles}>Create Movie</Link></Button>
