@@ -6,7 +6,7 @@
  */
 const requester = method => {
     const getAuthHeader = () => {
-        const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVkNWUzMzJmYzYxMDVjMDAwNGJmN2ZiOSIsImlhdCI6MTU2ODA5NTUyMywiZXhwIjoxNTY4NzAwMzIzfQ.ioMYnX7zCmRKXfmPJvMSL5ErpGAtWXAjGUbzeh7fHYQ';
+        const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVkNWUzMzJmYzYxMDVjMDAwNGJmN2ZiOSIsImlhdCI6MTU2ODc4ODYxMCwiZXhwIjoxNTY5MzkzNDEwfQ.mK-iLrnh8PDXiRZpJzcPviDKZ2D2QZCnUgas5d25i8A';
         return { "x-access-token": token };
     };
 
